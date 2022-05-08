@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
     res.send('This is blog backend server')
 })
 
-app.post('/register', body('first_name').isString().isLength({ min: 3 }),body('email').isEmail(),
+app.post('/register', body('email').isEmail(),
 body('password').custom((value) => {
     let pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/
   

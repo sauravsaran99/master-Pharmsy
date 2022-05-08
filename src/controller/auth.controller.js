@@ -12,18 +12,21 @@ const Register = async (req, res) => {
     try {
         console.log(req.body)
         let errors = validationResult(req);
+        console.log(errors)
         if(!errors.isEmpty()) {
             return res.send({ errors: errors.array() });
         }
 
         let user = await Users.findOne({email: req.body.email}).lean().exec();
-
+        console.log(user)
         if(user) {
             return res.send('User already exists')
         }
         user = await Users.create(req.body)
+        console.log(user)
         return res.send(user)
     } catch(err) {
+        console.log('err', err)
         return res.send(err.message)
     }
 }
