@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
 const { Register, Login } = require('./controller/auth.controller');
+const ProductIdController = require("./controller/ProductId.controller")
 const productController = require("./controller/product.controller");
 // const accountController = require('../src/controller/account.controller')
 
@@ -26,6 +27,7 @@ app.use(cors({origin: true, credentials: true}));
 // app.use('/account', accountController);
 
 app.use("/products", productController);
+app.use("/products", ProductIdController);
 
 app.get('/', (req, res) => {
     res.send('This is blog backend server')
